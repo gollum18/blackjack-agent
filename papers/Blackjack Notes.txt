@@ -1,0 +1,3 @@
+Hands with an Ace are considered soft hands because the Ace can be either a 1 or 11 depending on context. This increases liquidity as far as what you can play based on what the dealer holds - Hands with an Ace are considered less risky than hands without an Ace.
+
+Hands without an Ace are considered hard hands because you are stuck with a rigid hand that cannot be changed. For example, if you have two 5's, you have 10, whereas an Ace and a 5 can either be a 6 or 16.
