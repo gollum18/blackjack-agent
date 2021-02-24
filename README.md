@@ -9,7 +9,7 @@ I previously built a similar (but not stochastic) Texas Hold-Em Q-Learning agent
 
 
 ## How does it work?
-The agent utilizes card counting and expected payouts to weight actions. Each time the agent chooses to hit or stand, it determines the risks associated with both actions and stochastically chooses the action with less risk. At each game stage, the agent receives a probability distribution generated from the current and prior game state. This distribution is sorted in descending order. The then generates a probability and picks the action from the distribution that this probabilty falls into.
+The agent utilizes card counting and expected payouts to weight actions. Each time the agent chooses to hit or stand, it determines the risks associated with both actions and stochastically chooses the action with less risk. At each game stage, the agent receives a probability distribution generated from the current and prior game state. This distribution is sorted in descending order. The agent then generates a probability and picks the action from the distribution that this probabilty falls into.
 
 
 For example, if the agent generates the following distribution for the HIT and STAND actions:
