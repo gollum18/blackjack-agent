@@ -1,0 +1,84 @@
+#! /usr/bin/env python3
+
+import argparse
+from bqa.game import play
+from bqa.player import Account
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Starts a game of blackjack between a dealer and a blackjack agent.')
+    # game arguments
+    parser.add_argument(
+        '--rounds',
+        dest='rounds',
+        default=1000,
+        type=int,
+        help='The max number of rounds to simulate.'
+    )
+    # dealer parameters
+    parser.add_argument(
+        '--dealer-chips', 
+        dest='dealer_chips', 
+        default=10000,
+        type=int,
+        help='The number of chips the dealer should start with.'
+    )
+    # agent parameters
+    parser.add_argument(
+        '--agent-chips', 
+        dest='agent_chips', 
+        default=500,
+        type=int,
+        help='The number of chips the agent should start with.'
+    )
+    parser.add_argument(
+        '--database', 
+        dest='database', 
+        default='table.db',
+        type=str,
+        help='The name of the sqlite database to write Q-Values and associated weights and biases to.'
+    )
+    parser.add_argument(
+        '--alpha', 
+        dest='alpha', 
+        default=0.5,
+        type=float,
+        help='How much newly calculated risk impacts prior risk when determining action weights.'
+    )
+    parser.add_argument(
+        '--beta', 
+        dest='beta', 
+        default=0.5,
+        type=float,
+        help='How much newly calculated expected payout impacts prior expected payout when determining action biases.'
+    )
+    parser.add_argument(
+        '--learning-rate', 
+        dest='learning_rate', 
+        default=0.5,
+        type=float,
+        help='How much temporal differences affect newly generated q-values.'
+    )
+    parser.add_argument(
+        '--discount-factor', 
+        dest='discount_factor', 
+        default=0.5,
+        type=float,
+        help='How much immediacy the reward presents to the agent.'
+    )
+    args = parser.parse_args()
+    game_args = {
+        'rounds': args.rounds
+    }
+    dealer_args = {
+        'account': Account(chips=args.dealer_chips)
+    }
+    agent_args = {
+        'db': args.database,
+        'alpha': args.alpha,
+        'beta': args.beta,
+        'learning_rate': args.learning_rate,
+        'discount_factor': args.discount_factor,
+        'account': Account(chips=args.agent_chips)
+    }
+    play(game_args=game_args, dealer_args=dealer_args, agent_args=agent_args)
