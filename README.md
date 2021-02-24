@@ -8,6 +8,18 @@ This is my attempt at creating a blackjack agent using Stochastic Q-Learning and
 I previously built a similar (but not stochastic) Texas Hold-Em Q-Learning agent along with three of my colleagues for our class project for AI while I was BW. This agent will be significantly more complex and will employ techniques from relevant modern research papers regarding modelling how people play blackjack.
 
 
+## How does it work?
+The agent utilizes card counting and expected payouts to weight actions. Each time the agent chooses to hit or stand, it determines the risks associated with both actions and chooses the action with less risk. At each game stage, the agent receives a probability distribution generated from the current and prior game state. This distribution is sorted in descending order. The then generates a probability and picks the action from the distribution that this probabilty falls into.
+
+
+For example, if the agent generates the following distribution for the HIT and STAND actions:
+```
+HIT: 0.78
+STAND: 0.22
+```
+The agent will choose the HIT action with 78% probability and the STAND action with 22% probability.
+
+
 ## Installation Instructions
 To run the test class I wrote to utilize the agent follow these instructions:
 1. Download this repository and extract it's contents to a location on your computer.
