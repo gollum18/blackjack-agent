@@ -40,7 +40,10 @@ To run the test class on Windows:
 3. Create a Python virtual environment by entering `python -m venv venv` into powershell.
 4. Activate the virtual environment you just created by typing `.\venv\Scripts\activate`. You may need to give your powershell instance access to run third-party scripts. If so, follow the instructions provided by Microsoft [here](https://docs.microsoft.com/en-us/previous-versions//bb613481(v=vs.85)?redirectedfrom=MSDN)
 5. Build and install the setup.py file by typing `python setup.py install` in powershell.
-6. Run the game-runner script by typing `game-runner` into your terminal.
+6. Run the game-runner script by typing `python bin\game-runner` in powershell from the `[root]\bqa` directory.
+
+
+**Note**: The `game-runner` script will not directly launch from powershell, hence why you need to launch it with the full command in step 7 above.
 
 
 ## Results
