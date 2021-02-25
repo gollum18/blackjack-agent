@@ -118,7 +118,7 @@ class Agent(Player):
     WAGERS = [10, 20, 50, 100]
     PAYOUT = 200
 
-    def __init__(self, db='table.db', alpha=0.05, beta=0.05, learning_rate=0.05, discount_factor=0.05, account=Account(chips=500)):
+    def __init__(self, db='table.db', alpha=0.05, beta=0.05, learning_rate=0.05, discount_factor=0.05, temperature=0.05, account=Account(chips=500)):
         '''Returns an instance of an Agent that implements a 
         mixed Q-Learning/Neural Network architecture for policy
         decisions.
@@ -145,6 +145,7 @@ class Agent(Player):
         self._chip_delta = 0
         self._min_chip_delta = 0
         self._max_chip_delta = 0
+        self._temp = temperature
 
 
     def _action_distribution(self, state):
@@ -347,8 +348,8 @@ class Agent(Player):
             (list): A list containing decimals that
             sum to 1.
         '''
-        vsum = sum(map(exp, v))
-        return list(map(lambda x : exp(x) / vsum, v))
+        vsum = sum(map(exp, [x / self._temp for x in v]))
+        return list(map(lambda x : exp(x/self._temp) / vsum, v))
 
 
     def _update_qtable(self, state):

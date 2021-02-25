@@ -66,6 +66,13 @@ if __name__ == '__main__':
         type=float,
         help='How much immediacy the reward presents to the agent.'
     )
+    parser.add_argument(
+        '--temperature',
+        dest='temperature',
+        default=1,
+        type=float,
+        help='How much expected rewards affect action probability.'
+    ),
     args = parser.parse_args()
     game_args = {
         'rounds': args.rounds
@@ -79,6 +86,7 @@ if __name__ == '__main__':
         'beta': args.beta,
         'learning_rate': args.learning_rate,
         'discount_factor': args.discount_factor,
-        'account': Account(chips=args.agent_chips)
+        'account': Account(chips=args.agent_chips),
+        'temperature': args.temperature
     }
     play(game_args=game_args, dealer_args=dealer_args, agent_args=agent_args)
