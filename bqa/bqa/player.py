@@ -205,7 +205,7 @@ class Agent(Player):
             for card, count in non_busting_counts.items():
                 p = count / total_unknowns
                 payout = Agent.PAYOUT * (1 / (21 - card))
-                expected_payout = p * payout
+                expected_payout += p * payout
             if action == Agent.HIT:
                 return expected_payout
             else:
