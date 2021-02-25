@@ -421,8 +421,7 @@ class Agent(Player):
             (int): The number of chips that the agent should
             wager.
         '''
-        cd = self._chip_delta - self._min_chip_delta
-        cd_num = cd - self._min_chip_delta
+        cd_num = self._chip_delta - self._min_chip_delta
         cd_den = self._max_chip_delta - self._max_chip_delta
         risk = cd_num / cd_den if cd_den != 0 else .5
         if risk <= 0.25:
