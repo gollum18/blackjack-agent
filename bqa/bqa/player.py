@@ -199,14 +199,13 @@ class Agent(Player):
             face_to_blackjack = 21 - agent_total
             cards_for_blackjack = list(filter(lambda x : x == face_to_blackjack, unknown_cards))
             non_busting_counts = dict(Counter(non_busting_cards))
-            blackjack_counts = sum(cards_for_blackjack)
+            blackjack_counts = len(cards_for_blackjack)
             total_unknowns = len(unknown_cards)
-            expected_payout = (blackjack_counts / total_unknowns) * (Agent.PAYOUT * (1 / (21 - face_to_blackjack)))
+            expected_payout =  200 * (blackjack_counts / total_unknowns)
             total_unknowns = len(unknown_cards)
             for card, count in non_busting_counts.items():
                 p = count / total_unknowns
-                payout = Agent.PAYOUT * (1 / (21 - card))
-                expected_payout += p * payout
+                expected_payout += 200 * p
             if action == Agent.HIT:
                 return expected_payout
             else:

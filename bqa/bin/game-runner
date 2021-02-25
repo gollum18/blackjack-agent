@@ -9,6 +9,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Starts a game of blackjack between a dealer and a blackjack agent.')
     # game arguments
     parser.add_argument(
+        '--seed',
+        dest='seed',
+        default=0,
+        type=int,
+        help='Seed for the random number generator. Use the same seed to produce the same ordering of rounds.'
+    )
+    parser.add_argument(
         '--rounds',
         dest='rounds',
         default=1000,
@@ -75,6 +82,7 @@ if __name__ == '__main__':
     ),
     args = parser.parse_args()
     game_args = {
+        'seed': args.seed, 
         'rounds': args.rounds
     }
     dealer_args = {

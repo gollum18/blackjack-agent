@@ -1,4 +1,4 @@
-import argparse
+import argparse, random
 
 from bqa.player import (
     Account, Agent, Dealer
@@ -64,6 +64,8 @@ def play(*args, **kwargs):
     agent = Agent(**kwargs['agent_args'])
     game_kwargs = kwargs['game_args']
     total_rounds = game_kwargs['rounds']
+    seed = game_kwargs['seed']
+    random.seed(seed)
     game_stage = Agent.PRE_ROUND
     wager, rounds_played = 0, 0
     # play until the dealer or agent run out of chips or 
