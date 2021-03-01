@@ -247,11 +247,9 @@ class Agent(Player):
         if succ_game_stage == Agent.POST_ROUND:
             base = 250
             outcome = successor['outcome']
-            chip_delta = successor['chip_delta']
             if outcome == Agent.WIN:
                 if action == Agent.HIT: return base * prior_risk
                 elif action == Agent.STAND: return base
-                else: return base
                 return base
             elif outcome == Agent.LOSS:
                 if action == Agent.HIT: return -base
@@ -422,7 +420,7 @@ class Agent(Player):
             wager.
         '''
         cd_num = self._chip_delta - self._min_chip_delta
-        cd_den = self._max_chip_delta - self._max_chip_delta
+        cd_den = self._max_chip_delta - self._min_chip_delta
         risk = cd_num / cd_den if cd_den != 0 else .5
         if risk <= 0.25:
             wager = 0
