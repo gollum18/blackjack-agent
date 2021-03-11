@@ -405,7 +405,7 @@ class Agent(Player):
         dist = self._action_distribution(state)
         p = random()
         for a, P in dist:
-            if p < P:
+            if p > 1 - P:
                 action = a
                 break
         if not action: action = dist[-1][0]
